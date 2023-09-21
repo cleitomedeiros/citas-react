@@ -11,11 +11,11 @@ const ListadoPacientes = ({ pacientes, setPaciente, eliminarPaciente }) => {
             <span className="text-indigo-600 font-bold">Pacientes y Citas</span>
           </p>
 
-          {pacientes.map((paciente) => (
-            <Paciente key={paciente.id} 
-            paciente={paciente} 
-            setPaciente={setPaciente}
-            eliminarPaciente={eliminarPaciente}
+          { pacientes.map(( paciente ) => (
+            <Paciente key={ paciente.id } 
+            paciente={ paciente } 
+            setPaciente={ setPaciente }
+            eliminarPaciente={ eliminarPaciente }
             />
           ))}
         </>

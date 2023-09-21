@@ -14,15 +14,15 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
 
   // Efeito para carregar dados do paciente se estiver editando
   useEffect(() => {
-    if (paciente && Object.keys(paciente).length > 0) 
+    if (paciente && Object.keys( paciente ).length > 0) 
     {
-        setNombre(paciente.nombre);
-        setPropietario(paciente.propietario);
-        setEmail(paciente.email);
-        setFecha(paciente.fecha);
-        setSintomas(paciente.sintomas);
+        setNombre( paciente.nombre );
+        setPropietario( paciente.propietario );
+        setEmail( paciente.email );
+        setFecha( paciente.fecha );
+        setSintomas( paciente.sintomas );
     }
-  }, [paciente]);
+  }, [ paciente ]);
 
   // Função para gerar um ID único
   const generarId = () => {
@@ -45,7 +45,7 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Validação do formulário
-    if ([nombre, propietario, email, fecha, sintomas].includes("")) {
+    if ([ nombre, propietario, email, fecha, sintomas ].includes("")) {
       console.log("Há pelo menos um campo vazio");
       setError(true);
       return;
@@ -65,13 +65,13 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
       objetoPaciente.id = paciente.id
 
       const pacientesEditar = pacientes.map(pacienteState => 
-      pacienteState.id === paciente.id ? objetoPaciente : pacienteState) 
+      pacienteState.id === paciente.id ? objetoPaciente : pacienteState ) 
 
-      setPacientes(pacientesEditar)
+      setPacientes( pacientesEditar )
     } else {
       // Adicionamos lista de usuario
       objetoPaciente.id = generarId();
-      setPacientes([...pacientes, objetoPaciente]);   
+      setPacientes([ ...pacientes, objetoPaciente ]);   
     }
 
     // Limpiar formulario despues de enviar
@@ -107,7 +107,7 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
             placeholder="Nombre de la Mascota"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
+            onChange={(e) => setNombre( e.target.value )}
           />
         </div>
 
@@ -125,7 +125,7 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
             placeholder="Nombre del Propietario"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             value={propietario}
-            onChange={(e) => setPropietario(e.target.value)}
+            onChange={(e) => setPropietario( e.target.value )}
           />
         </div>
         <div className="md-5">
@@ -142,7 +142,7 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
             placeholder="Email Contacto Propietario"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail( e.target.value )}
           />
         </div>
         <div className="md-5">
@@ -159,7 +159,7 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
             placeholder="Email Contacto Propietario"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             value={fecha}
-            onChange={(e) => setFecha(e.target.value)}
+            onChange={(e) => setFecha( e.target.value )}
           />
         </div>
         <div className="md-5">
@@ -174,13 +174,13 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             placeholder="Describe los sintomas"
             value={sintomas}
-            onChange={(e) => setSintomas(e.target.value)}
+            onChange={(e) => setSintomas( e.target.value )}
           />
           <input
             type="submit"
             className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
             value={paciente && paciente.id ? 'Editar paciente' : 'Agregar Paciente'}
-            onClick={handleSubmit}
+            onClick={ handleSubmit }
           />
         </div>
       </form>

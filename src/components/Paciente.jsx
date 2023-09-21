@@ -5,7 +5,7 @@ const { nombre, propietario, email, fecha, sintomas, id } = paciente
 const handleEliminar = () => {
     const respuesta = confirm('Deseas eliminar este paciente?');
     if(respuesta) {
-        eliminarPaciente(id)
+        eliminarPaciente( id )
     }
 }
 
@@ -30,10 +30,10 @@ const handleEliminar = () => {
                     <button 
                         type="button"
                         className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase rounded-lg"
-                        onClick={()=>setPaciente(paciente)}
+                        onClick={()=>setPaciente( paciente )}
                         >Editar</button>
                     <button
-                        onClick={handleEliminar}
+                        onClick={ handleEliminar }
                         type="button"
                         className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white font-bold uppercase rounded-lg"
                         >Eliminar</button>
