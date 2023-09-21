@@ -1,19 +1,20 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import Error from './Error'
 
 const Formulario = ({ pacientes, setPacientes, paciente }) => {
 
   const [nombre, setNombre] = useState("");
   const [propietario, setPropietario] = useState("");
+  const [id, setID] = useState("");
   const [email, setEmail] = useState("");
   const [fecha, setFecha] = useState("");
   const [sintomas, setSintomas] = useState("");
 
   const [error, setError] = useState(false);
 
-  //efecto para cargar datos del paciente si se esta editando
+  // Efeito para carregar dados do paciente se estiver editando
   useEffect(() => {
-    if( paciente && Object.keys(paciente).length > 0 ) 
+    if (paciente && Object.keys(paciente).length > 0) 
     {
         setNombre(paciente.nombre);
         setPropietario(paciente.propietario);
@@ -23,20 +24,29 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
     }
   }, [paciente]);
 
-  //Funcion para generar un ID unico
+  // Função para gerar um ID único
   const generarId = () => {
-    const random = Math.random().toString(36).substring(2)
-    const fecha = Date.now().toString(36)
+    const random = Math.random().toString(36).substring(2);
+    const fecha = Date.now().toString(36);
     return random + fecha;
   }
 
-  // Función para manejar el envío del formulario
+  // Função para limpar o formulário
+  const limparFormulario = () => {
+    setID("");
+    setNombre("");
+    setPropietario("");
+    setEmail("");
+    setFecha("");
+    setSintomas("");
+  }
+
+  // Função para lidar com o envio do formulário
   const handleSubmit = (e) => {
     e.preventDefault();
-    //Validacion del Formulario
+    // Validação do formulário
     if ([nombre, propietario, email, fecha, sintomas].includes("")) {
-      console.log("Hay al menos un campo vacio");
-
+      console.log("Há pelo menos um campo vazio");
       setError(true);
       return;
     }
@@ -59,17 +69,14 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
 
       setPacientes(pacientesEditar)
     } else {
-      //Agregamos a nuestra lista de usuarios
+      // Adicionamos lista de usuario
       objetoPaciente.id = generarId();
-      setPacientes([...pacientes, objetoPaciente]);
+      setPacientes([...pacientes, objetoPaciente]);   
     }
 
-    //reiniciar formulario.
-    setNombre("");
-    setPropietario("");
-    setEmail("");
-    setFecha("");
-    setSintomas("");
+    // Limpiar formulario despues de enviar
+    limparFormulario();
+    paciente.id = "";
   };
 
   return (
@@ -80,7 +87,7 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
         Añade Pacientes y {""}
         <span className="text-indigo-600 font-bold ">Administralos</span>
       </p>
-      {/* formulario */}
+      {/* Formulário */}
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg py-5 px-5 mb-10"
@@ -103,6 +110,7 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
             onChange={(e) => setNombre(e.target.value)}
           />
         </div>
+
         <div className="md-5">
           <label
             htmlFor="propietario"
@@ -110,7 +118,7 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
           >
             Nombre Propietario
           </label>
-
+          
           <input
             id="propietario"
             type="text"

@@ -32,7 +32,7 @@ function App() {
         <Formulario 
         pacientes={ pacientes } 
         setPacientes={setPacientes}
-        //esta bem ?
+        //Ok+++
         paciente={paciente } 
         />
 
